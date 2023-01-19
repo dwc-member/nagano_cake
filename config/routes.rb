@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
   # 管理者側のルーティング設定
   namespace :admin do
-    resources :items
+    resources :items, only: [:new, :create, :index, :show]
     get '/' => 'homes#top'
   end
 end
