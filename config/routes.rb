@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # 会員側のルーティング設定
   get 'items' => 'public/items#index'
@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     resources :items, only: [:new, :create, :index, :show]
-    get '/' => 'homes#top'
+    root to: 'admin/homes#top'
   end
 end
