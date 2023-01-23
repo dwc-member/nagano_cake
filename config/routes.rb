@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 }
   get 'items' => 'public/items#index'
   root to: 'public/homes#top'
-
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
