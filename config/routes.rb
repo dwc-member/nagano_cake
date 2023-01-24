@@ -5,15 +5,18 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-  get 'items' => 'public/items#index'
+  resources :items, only: [:new, :create, :index, :show, :edit, :update]
+  get 'about' => 'public/homes#about'
   root to: 'public/homes#top'
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
+  sessions: "admin/sessions",
 }
   namespace :admin do
-    resources :items, only: [:new, :create, :index, :show]
-    root to: 'admin/homes#top'
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    root to: 'homes#top'
   end
 end
