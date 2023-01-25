@@ -6,12 +6,12 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
   end
 
+  # 投稿データの保存
   def create
-    # １.&2. データを受け取り新規登録するためのインスタンス作成
     @item = Item.new(item_params)
-    # 3. データをデータベースに保存するためのsaveメソッド実行
+    @item.admin_id = current_admin.id
     @item.save
-    redirect_to items_path
+    redirect_to admin_item_path
   end
 
   def show
@@ -23,8 +23,8 @@ class Admin::ItemsController < ApplicationController
   def update
   end
 
+  # 投稿データのストロングパラメータ
   private
-  # ストロングパラメータ
   def item_params
     params.require(:item).permit(:image, :name, :introduction, :price, :is_active)
   end
