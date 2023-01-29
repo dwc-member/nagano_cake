@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
+    @item = Item.new
   end
 
   def new
@@ -10,7 +11,6 @@ class Admin::ItemsController < ApplicationController
   # 投稿データの保存
   def create
     @item = Item.new(item_params)
-    # binding.pry
     @item.save
     redirect_to admin_item_path(@item.id)
   end
@@ -21,6 +21,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
