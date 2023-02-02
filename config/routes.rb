@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   # 顧客用
   # URL /customers/sign_in ...
-  devise_for :customers, skip: [:passwords], controllers: {
+  devise_for :customers,  skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-  resources :items, only: [:new, :create, :index, :show, :edit, :update]
+  resources :items, only: [:index, :show]
+  resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
   get 'about' => 'public/homes#about'
   root to: 'public/homes#top'
 

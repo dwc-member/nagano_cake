@@ -4,9 +4,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
   def change
     create_table :customers do |t|
       ## Database authenticatable
-      # メールアドレス
       t.string :email,              null: false, default: ""
-      # 暗号化されたパスワード
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -48,6 +46,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :address
       ## 電話番号を保存するカラム
       t.string :telephone_number
+      ## 会員ステータスを保存するカラム
+      t.boolean :is_deleted
 
 
       t.timestamps null: false
