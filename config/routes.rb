@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+  scope module: :public do
   resources :items, only: [:index, :show]
   resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
-  get 'about' => 'public/homes#about'
-  root to: 'public/homes#top'
+  get 'customers/mypage' => 'customers#show'
+  resources :orders, only: [:new, :comfirm, :complete, :create, :index, :show]
+  get 'about' => 'homes#about'
+  root to: 'homes#top'
+  end
 
   # 管理者用
   # URL /admin/sign_in ...
