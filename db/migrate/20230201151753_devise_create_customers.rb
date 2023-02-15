@@ -46,8 +46,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :address
       ## 電話番号を保存するカラム
       t.string :telephone_number
-      ## 会員ステータスを保存するカラム
-      t.boolean :is_deleted
+      ## 会員ステータスを保存するカラム退会済みtrue
+      t.boolean :is_deleted, default: false
 
 
       t.timestamps null: false

@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 }
   scope module: :public do
   resources :items, only: [:index, :show]
-  resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  resources :customers, only: [:show, :edit, :update]
+  get 'customers/unsubscribe/:id' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
+  patch ':id/withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
+  put 'customers/withdraw/:id' => 'customers#withdraw'
   get 'customers/mypage' => 'customers#show'
   resources :orders, only: [:new, :comfirm, :complete, :create, :index, :show]
   get 'about' => 'homes#about'
